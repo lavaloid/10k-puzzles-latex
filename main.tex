@@ -1,0 +1,110 @@
+%!TEX program = lualatex
+
+\documentclass[a4paper,12pt,oneside]{book}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{markdown}
+\usepackage{fancybox}
+\usepackage{titlesec}
+\usepackage{tikz}
+\usepackage{geometry}
+\usepackage[english]{babel}
+\usepackage{blindtext}
+\usepackage[titles]{tocloft}
+\usepackage{xurl}
+\usepackage[hidelinks]{hyperref}
+\usepackage{tabularx}
+\usepackage{pdfpages}
+\usepackage{multicol}
+
+\geometry{
+	a4paper,
+	inner=0.75in,
+	top=0.75in,
+	bottom=0.75in,
+	outer=0.75in
+}
+
+% === TITLE FORMATTING ===
+\titleformat{\chapter}[block]
+{\bfseries\Large}
+{\raisebox{-0.75em}{\shadowbox{\Huge \thechapter}}}
+{0.5em}
+{\hfill\huge}
+
+\titlespacing{\chapter}{0em}{0em}{2em}
+\titlespacing{\section}{0em}{0em}{0.5em}
+
+% === TEXT FORMATTING ===
+\setlength{\fboxsep}{1em}
+
+\newcommand{\nurl}[1]{
+  \href{#1}{\url{#1}}
+}
+
+\setlength\itemsep{0.2em}
+
+% === STAR RATING ===
+\usetikzlibrary{shapes.geometric}
+\newcommand{\Stars}[2][fill=black,draw=black]
+{
+	\begin{tikzpicture}[baseline=-0.35em,#1]
+	\foreach \X in {1,...,5}
+	{
+		\pgfmathsetmacro{\xfill}{min(1,max(1+#2-\X,0))}
+		\path (\X*1.1em,0) 
+		node[star,draw,star point height=0.25em,minimum size=1em,inner sep=0pt,
+		path picture={\fill (path picture bounding box.south west) 
+		rectangle  ([xshift=\xfill*1em]path picture bounding box.north west);}]{};
+	}
+	\end{tikzpicture}
+}
+
+% === PUZZLE MACROS ===
+\newcommand{\puzzleinfo}[2]
+{
+	\noindent
+	\emph{#1} \hfill \Stars{#2}
+	\vspace{0.2em}
+	\hrule
+	\vspace{0.5em}
+}
+
+\newcommand{\puzzleimage}[2][0.7]
+{\begin{center}
+	\includegraphics[width=#1\textwidth]{#2}
+\end{center}}
+
+\newenvironment{puzzlelinks}
+{
+  \begin{tabularx}{\textwidth}{l X}
+}
+{
+  \end{tabularx}
+}
+
+% === DOCUMENT ===
+\begin{document}
+
+\author{CTC Community}
+\title{10,000 Archive Puzzles Pack}
+\date{June 2023}
+
+\frontmatter
+\includepdf[pages=-]{cover.pdf}
+\include{./chapters/chapter00}
+\tableofcontents
+
+\mainmatter
+\setlength{\parindent}{0em}
+\include{./chapters/chapter01}
+\include{./chapters/chapter02}
+\include{./chapters/chapter03}
+\include{./chapters/chapter04}
+\include{./chapters/chapter05}
+\include{./chapters/chapter06}
+
+\backmatter
+% bibliography, glossary and index would go here.
+
+\end{document}

@@ -82,6 +82,7 @@ def output_latex(slug, content):
     genre = genre.title()
     genre = genre.replace('Xv', 'XV')           # ---- START genre special cases ----
     genre = genre.replace('And', 'and')
+    genre = genre.replace('Jss', 'JSS')
     genre = genre.replace('Lits', 'LITS')       # ---- END genre special cases ----
     genre = re.sub(r'(\d+)X(\d+)', r'\1\\emph{x}\2', genre)
     rules = rules.replace('**Rules**\n', '')

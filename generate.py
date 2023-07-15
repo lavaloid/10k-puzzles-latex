@@ -98,7 +98,8 @@ def output_latex(slug, content):
     links = re.sub(r'penpa: ', 'Penpa+: ', links, flags=re.IGNORECASE)
 
     # output
-    output = ('\\section{' + title + ' | {\\normalfont ' + author + '}' '}\n'
+    output = ('\\section[' + title + ' | ' + author + ' {[\\emph{' + genre + '}]}]{' 
+                + title + ' | {\\normalfont ' + author + '}' '}\n'
         + '\\label{sec:' + slug + '}\n'
         + '\\puzzleinfo{' + genre + '}{' + str(difficulty/2) + '}\n'
         + description + '\n'

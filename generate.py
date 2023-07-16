@@ -79,7 +79,7 @@ def output_latex(slug, content):
     title = title.replace('^4', '$^4$')
     title = title.replace(chr(0x2074), '$^4$')  # subscript 4
     author = author.replace('_', '\\_')
-    genre = genre.title()
+    genre = genre.title().strip()
     genre = genre.replace('Xv', 'XV')           # ---- START genre special cases ----
     genre = genre.replace('And', 'and')
     genre = genre.replace('Jss', 'JSS')

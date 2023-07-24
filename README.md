@@ -2,6 +2,11 @@
 
 This is the source code for the document of the 10,000th entry in the Cracking the Cryptic Discord archive. 
 
+## Requirements
+
+- LuaTeX
+- python 3 (I'm using 3.11)
+
 ## Permissions
 
 - You are NOT allowed to use the contents of any puzzles in this pack for your own project without explicit 
